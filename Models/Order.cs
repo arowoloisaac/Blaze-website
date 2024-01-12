@@ -20,5 +20,7 @@ namespace Arowolo_Delivery_Project.Models
         public string Address { get; set; } = string.Empty;
 
         public Guid UserId { get; set; }
+
+        public Guid RestaurantId { get; set; }
     }
 }

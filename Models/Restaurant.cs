@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Arowolo_Delivery_Project.Models;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel;
 
 namespace startup_trial.Models
@@ -19,7 +20,15 @@ namespace startup_trial.Models
 
         public DateTime ClosingTime { get; set; }
 
+        public double Price { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        // to get price history
+
         public ICollection<RestaurantRating> CostumerRates { get; set; } = new List<RestaurantRating>();
+
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
 
     }
 }

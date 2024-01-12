@@ -128,6 +128,9 @@ namespace startup_trial.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -135,6 +138,8 @@ namespace startup_trial.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
 
                     b.HasIndex("UserId");
 
@@ -470,6 +475,9 @@ namespace startup_trial.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -496,6 +504,9 @@ namespace startup_trial.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("RestaurantName")
                         .IsRequired()
@@ -569,6 +580,12 @@ namespace startup_trial.Migrations
 
             modelBuilder.Entity("Arowolo_Delivery_Project.Models.Order", b =>
                 {
+                    b.HasOne("startup_trial.Models.Restaurant", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Arowolo_Delivery_Project.Models.User", null)
                         .WithMany("OrderList")
                         .HasForeignKey("UserId")
@@ -683,6 +700,8 @@ namespace startup_trial.Migrations
             modelBuilder.Entity("startup_trial.Models.Restaurant", b =>
                 {
                     b.Navigation("CostumerRates");
+
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
