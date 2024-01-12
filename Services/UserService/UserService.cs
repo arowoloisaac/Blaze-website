@@ -31,7 +31,7 @@ namespace Arowolo_Delivery_Project.Services.UserService
             {
                 throw new ArgumentNullException("No Active user");
             }
-
+            
             currentUser.Address = request.Address;
             currentUser.BirthDate = request.BirthDate;
             currentUser.PhoneNumber = request.PhoneNumber;

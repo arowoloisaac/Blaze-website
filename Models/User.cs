@@ -1,5 +1,6 @@
 ﻿using Arowolo_Delivery_Project.Enums;
 using Microsoft.AspNetCore.Identity;
+using startup_trial.Models;
 
 namespace Arowolo_Delivery_Project.Models
 {
@@ -16,5 +17,7 @@ namespace Arowolo_Delivery_Project.Models
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
         public ICollection<Basket> BasketList { get; set; } = new List<Basket>();
         public ICollection<Order> OrderList { get; set; } = new List<Order>();
+
+        public ICollection<RestaurantRating> Restaurants { get; set; } = new List<RestaurantRating>();  
     }
 }

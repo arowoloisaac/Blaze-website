@@ -1,12 +1,12 @@
-﻿namespace Arowolo_Delivery_Project.Models
+﻿namespace startup_trial.Models
 {
-    public class Rating
+    public class RestaurantRating
     {
         public Guid Id { get; set; }
 
         public int Value { get; set; }
 
-        public Guid DishId { get; set; }
+        public Guid RestaurantId { get; set; }
 
         public Guid UserId { get; set; }
     }

@@ -10,11 +10,13 @@ using Arowolo_Delivery_Project.Services.TokenService;
 using Arowolo_Delivery_Project.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NLog.Web;
 using Quartz;
+using startup_trial.Models;
 using System.Security.Claims;
 using System.Text;
 
@@ -48,7 +50,29 @@ namespace Arowolo_Delivery_Project
             builder.Host.UseNLog();
 
             //builder.Services.AddHttpContextAccessor();
-            builder.Services.AddIdentity<User, Role>(options =>
+            builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddIdentity<Restaurant, IdentityRole<Guid>>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddIdentity<Driver, IdentityRole<Guid>>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequiredLength = 6;
