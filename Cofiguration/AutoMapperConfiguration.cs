@@ -1,10 +1,10 @@
-﻿using Arowolo_Delivery_Project.Dtos.BasketDto;
-using Arowolo_Delivery_Project.Dtos.DishDto;
-using Arowolo_Delivery_Project.Dtos.OrderDtos;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Dtos.BasketDto;
+using startup_trial.Dtos.DishDto;
+using startup_trial.Dtos.OrderDtos;
+using startup_trial.Models;
 using AutoMapper;
 
-namespace Arowolo_Delivery_Project.Cofiguration
+namespace startup_trial.Cofiguration
 {
     public class AutoMapperConfiguration : Profile
     {

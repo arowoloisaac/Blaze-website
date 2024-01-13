@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Arowolo_Delivery_Project.Models
+namespace startup_trial.Models
 {
     public interface IBaseEntity
     {

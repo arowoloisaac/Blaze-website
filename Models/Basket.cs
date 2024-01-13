@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Arowolo_Delivery_Project.Models
+namespace startup_trial.Models
 {
     public class Basket
     {

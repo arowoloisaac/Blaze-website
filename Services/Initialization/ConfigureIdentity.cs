@@ -1,8 +1,9 @@
-﻿using Arowolo_Delivery_Project.Cofiguration;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Cofiguration;
+using startup_trial.Models;
 using Microsoft.AspNetCore.Identity;
+using startup_trial.Models;
 
-namespace Arowolo_Delivery_Project.Services.Initialization
+namespace startup_trial.Services.Initialization
 {
     public static class ConfigureIdentity
     {
@@ -11,6 +12,11 @@ namespace Arowolo_Delivery_Project.Services.Initialization
             using var serviceScope = app.Services.CreateScope();
             var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
             var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<Role>>();
+
+            var restaurantManager = serviceScope.ServiceProvider.GetService<UserManager<Restaurant>>();
+
+            var driverManager = serviceScope.ServiceProvider.GetService<UserManager<Driver>>();
+
 
             /*var config = app.Configuration.GetSection("AdminCredentials");
             // Creation of role

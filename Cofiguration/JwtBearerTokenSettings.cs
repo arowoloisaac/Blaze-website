@@ -1,4 +1,4 @@
-﻿namespace Arowolo_Delivery_Project.Cofiguration
+﻿namespace startup_trial.Cofiguration
 {
     public class JwtBearerTokenSettings
     {

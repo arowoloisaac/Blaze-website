@@ -1,4 +1,4 @@
-﻿using Arowolo_Delivery_Project.Enums;
+﻿using startup_trial.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace startup_trial.Models

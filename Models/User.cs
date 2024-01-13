@@ -1,8 +1,8 @@
-﻿using Arowolo_Delivery_Project.Enums;
+﻿using startup_trial.Enums;
 using Microsoft.AspNetCore.Identity;
 using startup_trial.Models;
 
-namespace Arowolo_Delivery_Project.Models
+namespace startup_trial.Models
 {
     public class User : IdentityUser<Guid>
     {

@@ -1,7 +1,7 @@
-﻿using Arowolo_Delivery_Project.Data;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Data;
+using startup_trial.Models;
 
-namespace Arowolo_Delivery_Project.Services.TokenService
+namespace startup_trial.Services.TokenService
 {
     public class TokenMemoryStorageService : ITokenStorageService
     {

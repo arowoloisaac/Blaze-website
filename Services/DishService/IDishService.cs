@@ -1,9 +1,9 @@
-﻿using Arowolo_Delivery_Project.Dtos.DishDto;
-using Arowolo_Delivery_Project.Enums;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Dtos.DishDto;
+using startup_trial.Enums;
+using startup_trial.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Arowolo_Delivery_Project.Services.DishService
+namespace startup_trial.Services.DishService
 {
     public interface IDishService
     {

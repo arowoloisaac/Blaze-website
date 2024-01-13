@@ -1,4 +1,4 @@
-﻿namespace Arowolo_Delivery_Project.Dtos.BasketDto
+﻿namespace startup_trial.Dtos.BasketDto
 {
     public class DishBasketDto
     {

@@ -1,14 +1,14 @@
-﻿using Arowolo_Delivery_Project.Dtos.DishDto;
-using Arowolo_Delivery_Project.Enums;
-using Arowolo_Delivery_Project.Models;
-using Arowolo_Delivery_Project.Services.DishService;
+﻿using startup_trial.Dtos.DishDto;
+using startup_trial.Enums;
+using startup_trial.Models;
+using startup_trial.Services.DishService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Arowolo_Delivery_Project.Controllers
+namespace startup_trial.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

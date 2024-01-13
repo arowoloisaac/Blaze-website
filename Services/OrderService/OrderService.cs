@@ -1,14 +1,14 @@
-using Arowolo_Delivery_Project.Data;
-using Arowolo_Delivery_Project.Dtos.BasketDto;
-using Arowolo_Delivery_Project.Dtos.OrderDtos;
-using Arowolo_Delivery_Project.Enums;
-using Arowolo_Delivery_Project.Models;
+using startup_trial.Data;
+using startup_trial.Dtos.BasketDto;
+using startup_trial.Dtos.OrderDtos;
+using startup_trial.Enums;
+using startup_trial.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace Arowolo_Delivery_Project.Services.OrderService
+namespace startup_trial.Services.OrderService
 {
     public class OrderService : IOrderService
     {

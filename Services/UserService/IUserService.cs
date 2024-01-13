@@ -1,7 +1,7 @@
-﻿using Arowolo_Delivery_Project.Dtos.UserDtos;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Dtos.UserDtos;
+using startup_trial.Models;
 
-namespace Arowolo_Delivery_Project.Services.UserService
+namespace startup_trial.Services.UserService
 {
     public interface IUserService
     {

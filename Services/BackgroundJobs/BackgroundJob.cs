@@ -1,8 +1,8 @@
-﻿using Arowolo_Delivery_Project.Data;
+﻿using startup_trial.Data;
 using Microsoft.EntityFrameworkCore;
 using Quartz;
 
-namespace Arowolo_Delivery_Project.Services.BackgroundJobs
+namespace startup_trial.Services.BackgroundJobs
 {
     public class BackgroundJob : IJob
     {

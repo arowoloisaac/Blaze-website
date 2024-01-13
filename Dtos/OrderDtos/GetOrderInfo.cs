@@ -1,6 +1,6 @@
-﻿using Arowolo_Delivery_Project.Enums;
+﻿using startup_trial.Enums;
 
-namespace Arowolo_Delivery_Project.Dtos.OrderDtos
+namespace startup_trial.Dtos.OrderDtos
 {
     public class GetOrderInfo
     {

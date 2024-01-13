@@ -1,8 +1,8 @@
-﻿using Arowolo_Delivery_Project.Dtos.OrderDtos;
-using Arowolo_Delivery_Project.Models;
-﻿using Arowolo_Delivery_Project.Dtos.BasketDto;
+﻿using startup_trial.Dtos.OrderDtos;
+using startup_trial.Models;
+﻿using startup_trial.Dtos.BasketDto;
 
-namespace Arowolo_Delivery_Project.Services.OrderService
+namespace startup_trial.Services.OrderService
 {
     public interface IOrderService
     {

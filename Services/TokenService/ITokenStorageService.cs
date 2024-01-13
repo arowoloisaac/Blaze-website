@@ -1,4 +1,4 @@
-﻿namespace Arowolo_Delivery_Project.Services.TokenService
+﻿namespace startup_trial.Services.TokenService
 {
     public interface ITokenStorageService
     {

@@ -1,4 +1,4 @@
-﻿namespace Arowolo_Delivery_Project.Dtos.DishDto
+﻿namespace startup_trial.Dtos.DishDto
 {
     public class RatingDto
     {

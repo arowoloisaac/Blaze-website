@@ -1,11 +1,11 @@
-using Arowolo_Delivery_Project.Dtos.OrderDtos;
-using Arowolo_Delivery_Project.Services.OrderService;
+using startup_trial.Dtos.OrderDtos;
+using startup_trial.Services.OrderService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Arowolo_Delivery_Project.Controllers
+namespace startup_trial.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

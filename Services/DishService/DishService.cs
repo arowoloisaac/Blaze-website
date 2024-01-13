@@ -1,7 +1,7 @@
-﻿using Arowolo_Delivery_Project.Data;
-using Arowolo_Delivery_Project.Dtos.DishDto;
-using Arowolo_Delivery_Project.Enums;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Data;
+using startup_trial.Dtos.DishDto;
+using startup_trial.Enums;
+using startup_trial.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
-namespace Arowolo_Delivery_Project.Services.DishService
+namespace startup_trial.Services.DishService
 {
     public class DishService : IDishService
     {

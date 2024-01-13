@@ -1,6 +1,6 @@
-﻿using Arowolo_Delivery_Project.Cofiguration;
-using Arowolo_Delivery_Project.Dtos.UserDtos;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Cofiguration;
+using startup_trial.Dtos.UserDtos;
+using startup_trial.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Arowolo_Delivery_Project.Services.UserService
+namespace startup_trial.Services.UserService
 {
     public class UserService : IUserService
     {

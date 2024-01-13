@@ -1,15 +1,15 @@
-﻿using Arowolo_Delivery_Project.Cofiguration;
-using Arowolo_Delivery_Project.Dtos.UserDtos;
-using Arowolo_Delivery_Project.Models;
-using Arowolo_Delivery_Project.Services.TokenService;
-using Arowolo_Delivery_Project.Services.UserService;
+﻿using startup_trial.Cofiguration;
+using startup_trial.Dtos.UserDtos;
+using startup_trial.Models;
+using startup_trial.Services.TokenService;
+using startup_trial.Services.UserService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Security.Claims;
 
-namespace Arowolo_Delivery_Project.Controllers
+namespace startup_trial.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

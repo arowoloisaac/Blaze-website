@@ -1,13 +1,13 @@
-using Arowolo_Delivery_Project.Cofiguration;
-using Arowolo_Delivery_Project.Data;
-using Arowolo_Delivery_Project.Models;
-using Arowolo_Delivery_Project.Services.BackgroundJobs;
-using Arowolo_Delivery_Project.Services.BasketService;
-using Arowolo_Delivery_Project.Services.DishService;
-using Arowolo_Delivery_Project.Services.Initialization;
-using Arowolo_Delivery_Project.Services.OrderService;
-using Arowolo_Delivery_Project.Services.TokenService;
-using Arowolo_Delivery_Project.Services.UserService;
+using startup_trial.Cofiguration;
+using startup_trial.Data;
+using startup_trial.Models;
+using startup_trial.Services.BackgroundJobs;
+using startup_trial.Services.BasketService;
+using startup_trial.Services.DishService;
+using startup_trial.Services.Initialization;
+using startup_trial.Services.OrderService;
+using startup_trial.Services.TokenService;
+using startup_trial.Services.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -17,10 +17,11 @@ using Microsoft.OpenApi.Models;
 using NLog.Web;
 using Quartz;
 using startup_trial.Models;
+using startup_trial.Services.RestaurantService;
 using System.Security.Claims;
 using System.Text;
 
-namespace Arowolo_Delivery_Project
+namespace startup_trial
 {
     public class Program
     {
@@ -43,14 +44,14 @@ namespace Arowolo_Delivery_Project
             builder.Services.AddScoped<IBasketService, BasketService>();
             builder.Services.AddScoped<ITokenStorageService, TokenDbStorageService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
+            builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
             //add automapper
-            //builder.Services.AddAutoMapper(typeof(Program).Assembly);
             builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
             builder.Host.UseNLog();
 
-            //builder.Services.AddHttpContextAccessor();
-            builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+
+            builder.Services.AddIdentity<User, Role>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequiredLength = 6;
@@ -61,7 +62,13 @@ namespace Arowolo_Delivery_Project
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            builder.Services.AddIdentity<Restaurant, IdentityRole<Guid>>(options =>
+            builder.Services.AddIdentity<Restaurant, IdentityRole<Guid>>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            /*builder.Services.AddIdentity<Driver, IdentityRole<Guid>>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();*/
+
+            /*builder.Services.AddIdentity<Restaurant, IdentityRole<Guid>>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequiredLength = 6;
@@ -70,7 +77,7 @@ namespace Arowolo_Delivery_Project
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+             .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddIdentity<Driver, IdentityRole<Guid>>(options =>
             {
@@ -81,11 +88,14 @@ namespace Arowolo_Delivery_Project
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>();*/
 
             builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy(ApplicationRoleNames.User,
+                    new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
+
+                options.AddPolicy(ApplicationRoleNames.Restaurant,
                     new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
 
                 /*options.AddPolicy(ApplicationRoleNames.Administrator, new AuthorizationPolicyBuilder()

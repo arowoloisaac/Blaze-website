@@ -1,7 +1,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace Arowolo_Delivery_Project.Models
+namespace startup_trial.Models
 {
 
     public class tokenResponse

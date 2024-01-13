@@ -1,6 +1,6 @@
-﻿using Arowolo_Delivery_Project.Dtos.DishDto;
+﻿using startup_trial.Dtos.DishDto;
 
-namespace Arowolo_Delivery_Project.Models
+namespace startup_trial.Models
 {
     public class ServiceResponses
     {

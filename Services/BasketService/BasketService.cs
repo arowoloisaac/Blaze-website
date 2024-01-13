@@ -1,11 +1,11 @@
-﻿using Arowolo_Delivery_Project.Data;
-using Arowolo_Delivery_Project.Dtos.BasketDto;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Data;
+using startup_trial.Dtos.BasketDto;
+using startup_trial.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Arowolo_Delivery_Project.Services.BasketService
+namespace startup_trial.Services.BasketService
 {
     public class BasketService : IBasketService
     {

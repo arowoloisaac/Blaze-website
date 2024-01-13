@@ -1,12 +1,12 @@
-﻿using Arowolo_Delivery_Project.Models;
-using Arowolo_Delivery_Project.Services.BasketService;
+﻿using startup_trial.Models;
+using startup_trial.Services.BasketService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Arowolo_Delivery_Project.Controllers
+namespace startup_trial.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

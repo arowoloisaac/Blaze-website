@@ -1,7 +1,7 @@
-﻿using Arowolo_Delivery_Project.Dtos.BasketDto;
-using Arowolo_Delivery_Project.Models;
+﻿using startup_trial.Dtos.BasketDto;
+using startup_trial.Models;
 
-namespace Arowolo_Delivery_Project.Services.BasketService
+namespace startup_trial.Services.BasketService
 {
     public interface IBasketService
     {
