@@ -2,7 +2,7 @@
 
 namespace startup_trial.Dtos.UserDtos
 {
-    public class UserProfileDto
+    public class CustomerProfileDto
     {
         public Guid Id { get; set; }
 

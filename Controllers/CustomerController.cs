@@ -2,7 +2,7 @@
 using startup_trial.Dtos.UserDtos;
 using startup_trial.Models;
 using startup_trial.Services.TokenService;
-using startup_trial.Services.UserService;
+using startup_trial.Services.CustomerService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +13,12 @@ namespace startup_trial.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class CustomerController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly ICustomerService _userService;
         private ITokenStorageService _tokenStorageService;
 
-        public UserController(IUserService userService, ITokenStorageService tokenStorageService)
+        public CustomerController(ICustomerService userService, ITokenStorageService tokenStorageService)
         {
             _userService = userService;
             _tokenStorageService = tokenStorageService;
@@ -26,7 +26,7 @@ namespace startup_trial.Controllers
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(RegisterUserDto user)
+        public async Task<IActionResult> Register(RegisterCustomerDto user)
         {
             if (!ModelState.IsValid)
             {
@@ -47,7 +47,7 @@ namespace startup_trial.Controllers
 
         [HttpGet("profile")]
         [Authorize]
-        public async Task<ActionResult<UserProfileDto>> GetUserProfile() 
+        public async Task<ActionResult<CustomerProfileDto>> GetUserProfile() 
         {  
             try
             {
@@ -74,7 +74,7 @@ namespace startup_trial.Controllers
 
         [HttpPut("profile")]
         [Authorize]
-        public async Task<IActionResult> EditProfile(EditUserDto model)
+        public async Task<IActionResult> EditProfile(EditCustomerDto model)
         {
             if (!ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace startup_trial.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromBody] LoginUserDto model)
+        public async Task<IActionResult> Login([FromBody] LoginCustomerDto model)
         {
             try
             {

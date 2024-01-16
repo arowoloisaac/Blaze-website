@@ -18,13 +18,11 @@ namespace startup_trial.Services.RestaurantService
     {
         private readonly UserManager<User> _userManager;
         private readonly JwtBearerTokenSettings _bearerTokenSettings;
-        private readonly IMapper _mapper;
 
-        public RestaurantService(UserManager<User> userManager, IOptions<JwtBearerTokenSettings> options, IMapper mapper)
+        public RestaurantService(UserManager<User> userManager, IOptions<JwtBearerTokenSettings> options)
         {
             _userManager = userManager;
             _bearerTokenSettings = options.Value;
-            _mapper = mapper;
         }
 
         public async Task EditRestaurantProfile(EditRestaurantProfile request, string email)
@@ -93,7 +91,7 @@ namespace startup_trial.Services.RestaurantService
             {
                 throw new Exception("User with email not found, rather create an account");
             }
-
+            
             var generateToken = GenerateToken(checkUser);
             return generateToken;
         }
@@ -136,7 +134,14 @@ namespace startup_trial.Services.RestaurantService
             {
                 var result = _userManager.PasswordHasher.VerifyHashedPassword(identifyUser, identifyUser.PasswordHash, request.Password);
 
-                return result == PasswordVerificationResult.Success ? identifyUser : null;
+                if (identifyUser is Restaurant restaurant)
+                {
+                    return result == PasswordVerificationResult.Success ? identifyUser : null;
+                }
+                else
+                {
+                    throw new Exception("This is restauarnt owner sector");
+                }
             }
             return null;
         }

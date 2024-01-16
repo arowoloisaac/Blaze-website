@@ -2,7 +2,7 @@
 
 namespace startup_trial.Dtos.UserDtos
 {
-    public class RegisterUserDto
+    public class RegisterCustomerDto
     {
         public string Name { get; set; } = string.Empty;
 

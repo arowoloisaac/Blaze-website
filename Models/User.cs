@@ -1,6 +1,7 @@
 ﻿using startup_trial.Enums;
 using Microsoft.AspNetCore.Identity;
 using startup_trial.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace startup_trial.Models
 {
@@ -8,10 +9,13 @@ namespace startup_trial.Models
     {
         public string FullName { get; set; } = string.Empty;
 
+        [Required]
         public DateTime BirthDate { get; set; }
 
+        [Required]
         public Gender Gender { get; set; } = Gender.Male;
 
+        [Required]
         public string Address { get; set; } = string.Empty;
 
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();

@@ -7,7 +7,7 @@ using startup_trial.Services.DishService;
 using startup_trial.Services.Initialization;
 using startup_trial.Services.OrderService;
 using startup_trial.Services.TokenService;
-using startup_trial.Services.UserService;
+using startup_trial.Services.CustomerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -40,7 +40,7 @@ namespace startup_trial
 
 
             builder.Services.AddScoped<IDishService, DishService>();
-            //builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<IBasketService, BasketService>();
             builder.Services.AddScoped<ITokenStorageService, TokenDbStorageService>();
             builder.Services.AddScoped<IOrderService, OrderService>();

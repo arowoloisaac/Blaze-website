@@ -2,7 +2,7 @@
 
 namespace startup_trial.Dtos.UserDtos
 {
-    public class EditUserDto
+    public class EditCustomerDto
     {
         public string FullName { get; set; }
 

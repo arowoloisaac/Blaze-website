@@ -9,20 +9,20 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace startup_trial.Services.UserService
+namespace startup_trial.Services.CustomerService
 {
-    public class UserService : IUserService
+    public class CustomerService : ICustomerService
     {
         private readonly UserManager<User> _userManager;
         private readonly JwtBearerTokenSettings _bearerTokenSettings;
 
-        public UserService(UserManager<User> userManger, IOptions<JwtBearerTokenSettings> jwtTokenOptions)
+        public CustomerService(UserManager<User> userManger, IOptions<JwtBearerTokenSettings> jwtTokenOptions)
         {
             _userManager = userManger;
             _bearerTokenSettings = jwtTokenOptions.Value;
         }
 
-        public async Task EditProfile(EditUserDto request, string Id)
+        public async Task EditProfile(EditCustomerDto request, string Id)
         {
 
             var currentUser = await _userManager.FindByIdAsync(Id);
@@ -31,13 +31,15 @@ namespace startup_trial.Services.UserService
             {
                 throw new ArgumentNullException("No Active user");
             }
+            if (currentUser is Customer customer)
+            {
+                customer.Address = request.Address;
+                customer.BirthDate = request.BirthDate;
+                customer.PhoneNumber = request.PhoneNumber;
+                customer.Gender = request.Gender;
+                customer.FullName = request.FullName;
+            }
             
-            currentUser.Address = request.Address;
-            currentUser.BirthDate = request.BirthDate;
-            currentUser.PhoneNumber = request.PhoneNumber;
-            currentUser.Gender = request.Gender;
-            currentUser.FullName = request.FullName;
-
             var updateUser = await _userManager.UpdateAsync(currentUser);
 
             if (!updateUser.Succeeded)
@@ -47,7 +49,7 @@ namespace startup_trial.Services.UserService
             
         }
 
-        public async Task<UserProfileDto> GetProfile(string email)
+        public async Task<CustomerProfileDto> GetProfile(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
 
@@ -56,19 +58,28 @@ namespace startup_trial.Services.UserService
                 throw new KeyNotFoundException($"User with email {email} already exist");
             }
 
-            return new UserProfileDto
+            if (user is Customer customer)
             {
-                Email = user.Email,
-                BirthDate = user.BirthDate,
-                PhoneNumber = user.PhoneNumber,
-                Name = user.FullName,
-                Address = user.Address,
-                Gender = user.Gender,
-                Id = user.Id,
-            };
+                return new CustomerProfileDto
+                {
+                    Email = user.Email,
+                    BirthDate = user.BirthDate,
+                    PhoneNumber = user.PhoneNumber,
+                    Name = user.FullName,
+                    Address = user.Address,
+                    Gender = user.Gender,
+                    Id = user.Id,
+                };
+            }
+
+            else
+            {
+                return null;
+            }
+            
         }
 
-        public async Task<tokenResponse> Login(LoginUserDto request)
+        public async Task<tokenResponse> Login(LoginCustomerDto request)
         {
             var user = await ValidateUser(request);
 
@@ -78,12 +89,13 @@ namespace startup_trial.Services.UserService
             }
 
             var role = await _userManager.IsInRoleAsync(user, ApplicationRoleNames.User);
+
             var token = GenerateToken(user);
 
             return new tokenResponse(token);
         }
 
-        public async Task<tokenResponse> Register(RegisterUserDto request)
+        public async Task<tokenResponse> Register(RegisterCustomerDto request)
         {
             var existingUser = await _userManager.FindByEmailAsync(request.Email);
 
@@ -92,7 +104,8 @@ namespace startup_trial.Services.UserService
                 throw new ArgumentNullException("User with same Email Exists");
             }
 
-            var identityUser = new User
+
+            var identityUser = new Customer
             {
                 UserName = request.Email,
                 FullName = request.Name,
@@ -117,7 +130,7 @@ namespace startup_trial.Services.UserService
 
 
 
-        private async Task<User> ValidateUser(LoginUserDto request)
+        private async Task<User> ValidateUser(LoginCustomerDto request)
         {
             var identifyUser = await _userManager.FindByEmailAsync(request.Email);
 
@@ -125,7 +138,15 @@ namespace startup_trial.Services.UserService
             {
                 var result = _userManager.PasswordHasher.VerifyHashedPassword(identifyUser, identifyUser.PasswordHash, request.Password);
 
-                return result == PasswordVerificationResult.Success ? identifyUser : null;
+                if (identifyUser is Customer customer)
+                {
+                    return result == PasswordVerificationResult.Success ? identifyUser : null;
+                }
+
+                else
+                {
+                    throw new Exception("This task is for customer");
+                }
             }
             return null;
         }

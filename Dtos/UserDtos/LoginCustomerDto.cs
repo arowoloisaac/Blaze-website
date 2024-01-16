@@ -1,6 +1,6 @@
 ﻿namespace startup_trial.Dtos.UserDtos
 {
-    public class LoginUserDto
+    public class LoginCustomerDto
     {
         public string Email { get; set; } = "user@example.com";
 
