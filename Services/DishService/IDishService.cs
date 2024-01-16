@@ -9,8 +9,6 @@ namespace startup_trial.Services.DishService
     {
         Task<GetDishDto> GetDishById(Guid id);
 
-        Task<List<GetDishDto>> AddDishes(AddDishDto newDish);
-
         //Task<ServiceResponses> GetDishes(Category? category, bool? vegetarian, Sorting? sort, int? page);
 
         Task<bool> GetDishRating(Guid dishId, string userId);

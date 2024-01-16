@@ -18,6 +18,7 @@ namespace startup_trial.Models
         public ICollection<Basket> BasketList { get; set; } = new List<Basket>();
         public ICollection<Order> OrderList { get; set; } = new List<Order>();
 
-        public ICollection<RestaurantRating> Restaurants { get; set; } = new List<RestaurantRating>();  
+        public ICollection<Dish> dishes { get; set; }
+        //public ICollection<RestaurantRating> Restaurants { get; set; } = new List<RestaurantRating>();  
     }
 }

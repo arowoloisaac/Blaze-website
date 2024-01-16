@@ -14,6 +14,7 @@ namespace startup_trial.Data
             
         }
 
+
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Rating> Rating { get; set; }
         public override DbSet<User> Users { get; set; }
@@ -24,9 +25,11 @@ namespace startup_trial.Data
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<RestaurantRating> restaurantRatings { get; set; }
+        public DbSet<Customer> Customer { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             base.OnModelCreating(modelBuilder);
         }
     }

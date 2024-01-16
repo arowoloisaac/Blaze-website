@@ -24,26 +24,6 @@ namespace startup_trial.Services.DishService
             _userManager = userManager;
         }
 
-
-        public async Task<List<GetDishDto>> AddDishes(AddDishDto newDish)
-        {
-            var dish = await _context.Dishes.FirstOrDefaultAsync( dish => dish.Name.ToLower() == newDish.Name.ToLower());
-
-            if (dish is not null)
-            {
-                throw new ArgumentException($"Dish with {dish.Name} already exist");
-            }
-
-            _context.Dishes.Add(_mapper.Map<Dish>(newDish));
-            await _context.SaveChangesAsync();
-
-            var dbDishes = await _context.Dishes.ToListAsync();
-            
-            var mapperDishes = dbDishes.Select( dish => _mapper.Map<GetDishDto>(dish) ).ToList();
-
-            return mapperDishes;
-        }
-
         //for getting dish by ID
         public async Task<GetDishDto> GetDishById(Guid id)
         {

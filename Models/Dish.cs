@@ -13,6 +13,8 @@ namespace startup_trial.Models
         public int Rating { get; set; }
         public string PhotoUrl { get; set; } = string.Empty;
 
+        public Guid RestaurantId { get; set; }
+
         public ICollection<Rating>? RatingList { get; set; }
         public ICollection<Basket> UserwithDish { get; set; } = new List<Basket>();
     }

@@ -21,21 +21,6 @@ namespace startup_trial.Controllers
             _dishService = dishService;
         }
 
-        // to be deleted later
-        [HttpPost("PostDish")]
-        public async Task<ActionResult<List<GetDishDto>>> PostDish(AddDishDto newDish)
-        {
-            try
-            {
-                return Ok(await _dishService.AddDishes(newDish));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            
-        }
-
 
         [HttpGet("{id}")]
         public async Task<ActionResult<List<GetDishDto>>> GetDishById(Guid id)

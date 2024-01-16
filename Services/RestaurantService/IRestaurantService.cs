@@ -8,7 +8,7 @@ namespace startup_trial.Services.RestaurantService
 
         Task<string> Login (LoginRestaurantDto model);
 
-        Task<RestaurantProfile> EditRestaurantProfile(EditRestaurantProfile model);
+        Task EditRestaurantProfile(EditRestaurantProfile model, string email);
 
         Task<RestaurantProfile> GetProfile(string email);
     }

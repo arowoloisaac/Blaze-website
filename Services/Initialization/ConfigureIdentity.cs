@@ -1,7 +1,7 @@
 ﻿using startup_trial.Cofiguration;
 using startup_trial.Models;
 using Microsoft.AspNetCore.Identity;
-using startup_trial.Models;
+using startup_trial.Data;
 
 namespace startup_trial.Services.Initialization
 {
@@ -13,10 +13,7 @@ namespace startup_trial.Services.Initialization
             var userManager = serviceScope.ServiceProvider.GetService<UserManager<User>>();
             var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<Role>>();
 
-            var restaurantManager = serviceScope.ServiceProvider.GetService<UserManager<Restaurant>>();
-
-            var driverManager = serviceScope.ServiceProvider.GetService<UserManager<Driver>>();
-
+            
 
             /*var config = app.Configuration.GetSection("AdminCredentials");
             // Creation of role

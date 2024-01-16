@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace startup_trial.Models
 {
-    public class Driver : IdentityUser<Guid>
+    public class Driver : User
     {
         //public Guid Id { get; set; }
 
@@ -22,5 +22,7 @@ namespace startup_trial.Models
         public string CarColor { get; set; } = string.Empty;
 
         public string PlateNumber { get; set; } = string.Empty;
+
+        //public ICollection<RestaurantRating> Restaurants { get; set;}
     }
 }

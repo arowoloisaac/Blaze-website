@@ -4,13 +4,11 @@ using System.ComponentModel;
 
 namespace startup_trial.Models
 {
-    public class Restaurant : IdentityUser<Guid>
+    public class Restaurant : User
     {
         //public Guid Id { get; set; }
 
         public string RestaurantName { get; set; } = string.Empty;
-
-        public string Address { get; set; } = string.Empty;
 
         //public string Email { get; set; } = string.Empty;
 
@@ -24,11 +22,13 @@ namespace startup_trial.Models
 
         public DateTime CreatedDate { get; set; }
 
+        
+
         // to get price history
 
-        public ICollection<RestaurantRating> CostumerRates { get; set; } = new List<RestaurantRating>();
+        //public ICollection<RestaurantRating> CostumerRates { get; set; } = new List<RestaurantRating>();
 
-        public ICollection<Order> Orders { get; set; } = new List<Order>();
+        //public ICollection<Order> Orders { get; set; } = new List<Order>();
 
     }
 }
