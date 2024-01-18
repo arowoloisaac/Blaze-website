@@ -153,7 +153,7 @@ namespace startup_trial.Services.OrderService
                 var newOrder = new Order
                 {
                     DeliveryTime = model.DeliveryTime,
-                    OrderTime = DateTime.Now,
+                    OrderTime = DateTime.UtcNow,
                     Address = model.Address,
                     UserId = currentUser.Id,
                     Status = Status.InProcess,

@@ -17,7 +17,6 @@ using Microsoft.OpenApi.Models;
 using NLog.Web;
 using Quartz;
 using startup_trial.Services.RestaurantService;
-using System.Security.Claims;
 using System.Text;
 using startup_trial.Services.RestaurantDish;
 using startup_trial.Services.DriverService;
@@ -37,8 +36,9 @@ namespace startup_trial
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(conn));
+
 
 
             builder.Services.AddScoped<IDishService, DishService>();
@@ -49,7 +49,7 @@ namespace startup_trial
             builder.Services.AddScoped<IRestaurantService, RestaurantService>();
             builder.Services.AddScoped<IRestaurantDish, RestaurantDish>();
             builder.Services.AddScoped<IUserRestaurantDish, RestaurantDish>();
-            builder.Services.AddScoped<IDriverService, DriverService>();    
+            builder.Services.AddScoped<IDriverService, DriverService>();
             builder.Services.AddScoped<IDeliveryService, DeliveryService>();
 
             //add automapper
@@ -68,7 +68,7 @@ namespace startup_trial
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-         
+
             builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy(ApplicationRoleNames.User,
