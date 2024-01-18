@@ -1,0 +1,38 @@
+version: '3.4'
+
+networks:
+  dev: 
+    driver: bridge
+    
+services:  
+  webapi-dev:
+    depends_on:
+      - "api_db"
+    container_name: webapi-development_flavor_flash
+    build: .
+    environment:
+      - ASPNETCORE_URLS=http://+:3001
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings__DefaultConnection=User ID=postgres;Password=postgres;Server=api_db;Port=5432;Database=ApiDB; IntegratedSecurity=true;Pooling=true"
+    ports:
+      - "8082:3001"
+    networks:
+      - dev
+    
+  api_db:
+    image: postgres:latest
+    container_name: api_postgresql_flavor_flash
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ApiDB
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - app_data:/var/lib/postgresql/data
+    networks: 
+      - dev
+  
+volumes:
+  app_data:

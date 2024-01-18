@@ -20,7 +20,7 @@ namespace startup_trial.Services.BackgroundJobs
         {
             _logger.LogInformation($"Background job started at {DateTime.UtcNow}");
 
-            var oldDate = DateTime.Now.AddDays(-3);
+            var oldDate = DateTime.UtcNow.AddDays(-3);
 
             var expiredTokens =
                 await _context.LogoutTokens.Where(x => x.CreateDateTime <= oldDate && !x.DeleteDate.HasValue).ToListAsync();
