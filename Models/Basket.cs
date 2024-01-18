@@ -13,5 +13,11 @@ namespace startup_trial.Models
         public Order? Order { get; set; }
 
         public User User { get; set; }
+
+        public Guid RestaurantId { get; set; }
+
+        //public Customer Customer { get; set; }
+
+
     }
 }

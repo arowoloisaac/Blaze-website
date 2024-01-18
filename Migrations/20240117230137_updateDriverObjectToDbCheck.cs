@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace startup_trial.Migrations
 {
     /// <inheritdoc />
-    public partial class ReloadDb : Migration
+    public partial class updateDriverObjectToDbCheck : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,9 +35,12 @@ namespace startup_trial.Migrations
                     Gender = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Acquire = table.Column<int>(type: "int", nullable: true),
                     CarType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CarColor = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlateNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<double>(type: "float", nullable: true),
+                    Accepted = table.Column<int>(type: "int", nullable: true),
                     RestaurantName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     startingTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ClosingTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -61,24 +64,6 @@ namespace startup_trial.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Dishes",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    IsVegetarian = table.Column<bool>(type: "bit", nullable: false),
-                    Category = table.Column<int>(type: "int", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    PhotoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Dishes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,6 +200,31 @@ namespace startup_trial.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Dishes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    IsVegetarian = table.Column<bool>(type: "bit", nullable: false),
+                    Category = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    PhotoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dishes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Dishes_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
                 {
@@ -225,11 +235,17 @@ namespace startup_trial.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DriverId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_AspNetUsers_DriverId",
+                        column: x => x.DriverId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Order_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -272,7 +288,8 @@ namespace startup_trial.Migrations
                     Count = table.Column<int>(type: "int", nullable: false),
                     DishId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RestaurantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -349,6 +366,16 @@ namespace startup_trial.Migrations
                 name: "IX_Baskets_UserId",
                 table: "Baskets",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dishes_UserId",
+                table: "Dishes",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_DriverId",
+                table: "Order",
+                column: "DriverId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_UserId",

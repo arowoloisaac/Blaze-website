@@ -9,7 +9,7 @@ namespace startup_trial.Dtos.RestaurantDto.RestaurantDishDto
         public double Price { get; set; } = 100;
         public bool IsVegetarian { get; set; } = true;
         public Category Category { get; set; } = Category.Wok;
-        public int Rating { get; set; } = 8;
+        //public int Rating { get; set; } = 8;
         public string PhotoUrl { get; set; } = string.Empty;
         //public Guid Res
     }

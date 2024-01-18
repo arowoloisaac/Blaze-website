@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using startup_trial.Dtos.RestaurantDto.RestaurantDishDto;
 using startup_trial.Services.RestaurantDish;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Security.Claims;
 
 namespace startup_trial.Controllers
@@ -19,7 +21,9 @@ namespace startup_trial.Controllers
             _restaurant = restaurantDish;
         }
 
-        [HttpPost("Adddish")]
+        [HttpPost("dish")]
+        [Authorize]
+        [SwaggerOperation(Summary ="Add dish to your restaurant")]
         public async Task<IActionResult> AddDish(AddRestaurantDishDto model)
         {
             if (!ModelState.IsValid)
@@ -33,12 +37,23 @@ namespace startup_trial.Controllers
             return Ok();
         }
 
-        [HttpGet("restaurantdish")]
+        [HttpGet("dish")]
+        [Authorize]
+        [SwaggerOperation(Summary ="Restaurant to get its dish list")]
         public async Task<IActionResult> FetchDishes()
         {
             var userClaimById = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Authentication);
 
             return Ok(await _restaurant.FetchDish(userClaimById.Value));
+        }
+
+        [HttpGet("restaurant-portfolio")]
+        [Authorize]
+        public async Task<IActionResult> RestaurantPortfolio()
+        {
+            var userClaim = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Authentication);
+
+            return Ok(await _restaurant.Portfolio(userClaim.Value));
         }
     }
 }

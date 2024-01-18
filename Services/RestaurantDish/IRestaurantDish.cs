@@ -7,5 +7,6 @@ namespace startup_trial.Services.RestaurantDish
     {
         Task AddDishes(AddRestaurantDishDto newDish, string RestaurantId);
         Task<List<GetDishDto>> FetchDish(string UserId);
+        Task<List<RestaurantOrderDto>> Portfolio(string UserId);
     }
 }

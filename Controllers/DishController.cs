@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace startup_trial.Controllers
 {
@@ -127,6 +128,7 @@ namespace startup_trial.Controllers
         [HttpPost("rating")]
         [Authorize]
         //public async Task<IActionResult> PostRating(Guid id, int value)
+        [SwaggerOperation(Summary ="Rate a dish")]
         public async Task<IActionResult> PostRating(Guid id, int value)
         {
             try

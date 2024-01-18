@@ -1,6 +1,8 @@
-﻿namespace startup_trial.Dtos.DriverDtos
+﻿using startup_trial.Dtos.UserDtos;
+
+namespace startup_trial.Dtos.DriverDtos
 {
-    public class LoginDriverDto
+    public class LoginDriverDto : LoginCustomerDto
     {
     }
 }

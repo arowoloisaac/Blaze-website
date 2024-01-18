@@ -12,8 +12,8 @@ using startup_trial.Data;
 namespace startup_trial.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240116033431_ReloadDb")]
-    partial class ReloadDb
+    [Migration("20240117230137_updateDriverObjectToDbCheck")]
+    partial class updateDriverObjectToDbCheck
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,6 +171,9 @@ namespace startup_trial.Migrations
                     b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -215,7 +218,15 @@ namespace startup_trial.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Dishes");
                 });
@@ -256,6 +267,9 @@ namespace startup_trial.Migrations
                     b.Property<DateTime>("DeliveryTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("DriverId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("OrderTime")
                         .HasColumnType("datetime2");
 
@@ -272,6 +286,8 @@ namespace startup_trial.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DriverId");
 
                     b.HasIndex("UserId");
 
@@ -404,9 +420,25 @@ namespace startup_trial.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("startup_trial.Models.Customer", b =>
+                {
+                    b.HasBaseType("startup_trial.Models.User");
+
+                    b.HasDiscriminator().HasValue("Customer");
+                });
+
             modelBuilder.Entity("startup_trial.Models.Driver", b =>
                 {
                     b.HasBaseType("startup_trial.Models.User");
+
+                    b.Property<int>("Accepted")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Acquire")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("CarColor")
                         .IsRequired()
@@ -522,13 +554,26 @@ namespace startup_trial.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("startup_trial.Models.Dish", b =>
+                {
+                    b.HasOne("startup_trial.Models.User", null)
+                        .WithMany("dishes")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("startup_trial.Models.Order", b =>
                 {
+                    b.HasOne("startup_trial.Models.Driver", "Driver")
+                        .WithMany()
+                        .HasForeignKey("DriverId");
+
                     b.HasOne("startup_trial.Models.User", null)
                         .WithMany("OrderList")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Driver");
                 });
 
             modelBuilder.Entity("startup_trial.Models.Rating", b =>
@@ -565,6 +610,8 @@ namespace startup_trial.Migrations
                     b.Navigation("OrderList");
 
                     b.Navigation("Ratings");
+
+                    b.Navigation("dishes");
                 });
 #pragma warning restore 612, 618
         }

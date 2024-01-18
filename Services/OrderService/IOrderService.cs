@@ -10,8 +10,8 @@ namespace startup_trial.Services.OrderService
 
         Task<List<GetOrderInfoDto>> GetOrder(string UserId);
 
-        Task PostOrder(CreateOrderDto model, string UserId);
+        Task<ResponseString> PostOrder(CreateOrderDto model, string UserId);
 
-        Task ConfirmOrder(Guid OrderId, string UserId);
+        Task<ResponseString> ConfirmOrder(Guid OrderId, string UserId);
     }
 }

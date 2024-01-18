@@ -12,8 +12,8 @@ using startup_trial.Data;
 namespace startup_trial.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240116080238_AddDriverToDb")]
-    partial class AddDriverToDb
+    [Migration("20240117231601_updateDriverObjectToDb")]
+    partial class updateDriverObjectToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,6 +171,9 @@ namespace startup_trial.Migrations
                     b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -263,6 +266,9 @@ namespace startup_trial.Migrations
 
                     b.Property<DateTime>("DeliveryTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DriverId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("OrderTime")
                         .HasColumnType("datetime2");
@@ -422,6 +428,15 @@ namespace startup_trial.Migrations
             modelBuilder.Entity("startup_trial.Models.Driver", b =>
                 {
                     b.HasBaseType("startup_trial.Models.User");
+
+                    b.Property<int>("Accepted")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Acquire")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("CarColor")
                         .IsRequired()

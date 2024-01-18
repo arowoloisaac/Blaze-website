@@ -6,6 +6,7 @@ namespace startup_trial.Enums
     public enum Status
     {
         InProcess,
+        InTransit,
         Delivered
     }
 }

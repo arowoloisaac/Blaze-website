@@ -12,8 +12,8 @@ using startup_trial.Data;
 namespace startup_trial.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240116044158_AddRestaurantIdToDish")]
-    partial class AddRestaurantIdToDish
+    [Migration("20240117232314_AddInitialObjectToDb")]
+    partial class AddInitialObjectToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,6 +171,9 @@ namespace startup_trial.Migrations
                     b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -261,8 +264,14 @@ namespace startup_trial.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("DeliveryFee")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("DeliveryTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("DriverId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("OrderTime")
                         .HasColumnType("datetime2");
@@ -412,9 +421,25 @@ namespace startup_trial.Migrations
                     b.UseTphMappingStrategy();
                 });
 
+            modelBuilder.Entity("startup_trial.Models.Customer", b =>
+                {
+                    b.HasBaseType("startup_trial.Models.User");
+
+                    b.HasDiscriminator().HasValue("Customer");
+                });
+
             modelBuilder.Entity("startup_trial.Models.Driver", b =>
                 {
                     b.HasBaseType("startup_trial.Models.User");
+
+                    b.Property<int>("Accepted")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Acquire")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("CarColor")
                         .IsRequired()

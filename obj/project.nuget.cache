@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u4t7bKeBxOrYiOWCoxQn5Kz/OiJ/3zg8wlSP51g02B8kRW+ha/kjPspsL3+5yZoh1rBU1QBN8zP7jH4TReZ67Q==",
+  "dgSpecHash": "ZK0ysvQ5iGBfQLF1p2VYw0ZDBV7cAei086h1ypsWysn+CGa2UEWMeoM9uRJtn93ww4gA4lbONMBPDoYFNsZqNg==",
   "success": true,
   "projectFilePath": "C:\\Users\\arowo\\source\\repos\\startup-trial\\startup-trial.csproj",
   "expectedPackageFiles": [
@@ -61,6 +61,7 @@
     "C:\\Users\\arowo\\.nuget\\packages\\quartz.extensions.dependencyinjection\\3.7.0\\quartz.extensions.dependencyinjection.3.7.0.nupkg.sha512",
     "C:\\Users\\arowo\\.nuget\\packages\\quartz.extensions.hosting\\3.7.0\\quartz.extensions.hosting.3.7.0.nupkg.sha512",
     "C:\\Users\\arowo\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\arowo\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
     "C:\\Users\\arowo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\arowo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\arowo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",

@@ -10,7 +10,7 @@ namespace startup_trial.Dtos.DishDto
         public double Price { get; set; }
         public bool IsVegetarian { get; set; }
         public Category Category { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
         public string PhotoUrl { get; set; } = string.Empty;
     }
 }

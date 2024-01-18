@@ -89,3 +89,4 @@ C:\Users\arowo\source\repos\startup-trial\obj\Debug\net7.0\refint\startup-trial.
 C:\Users\arowo\source\repos\startup-trial\obj\Debug\net7.0\startup-trial.pdb
 C:\Users\arowo\source\repos\startup-trial\obj\Debug\net7.0\startup-trial.genruntimeconfig.cache
 C:\Users\arowo\source\repos\startup-trial\obj\Debug\net7.0\ref\startup-trial.dll
+C:\Users\arowo\source\repos\startup-trial\bin\Debug\net7.0\Swashbuckle.AspNetCore.Annotations.dll

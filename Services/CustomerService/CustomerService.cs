@@ -36,8 +36,8 @@ namespace startup_trial.Services.CustomerService
                 customer.Address = request.Address;
                 customer.BirthDate = request.BirthDate;
                 customer.PhoneNumber = request.PhoneNumber;
-                customer.Gender = request.Gender;
                 customer.FullName = request.FullName;
+
             }
             
             var updateUser = await _userManager.UpdateAsync(currentUser);

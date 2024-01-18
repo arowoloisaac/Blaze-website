@@ -8,8 +8,6 @@ namespace startup_trial.Dtos.UserDtos
 
         public string Address { get; set; }
 
-        public Gender Gender { get; set; } = Gender.Male;
-
         public string PhoneNumber { get; set; }
 
         public DateTime BirthDate { get; set; }

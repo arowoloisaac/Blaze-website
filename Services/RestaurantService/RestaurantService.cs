@@ -28,7 +28,7 @@ namespace startup_trial.Services.RestaurantService
         public async Task EditRestaurantProfile(EditRestaurantProfile request, string email)
         {
             var currentUser = await _userManager.FindByEmailAsync(email);
-
+            
             if (currentUser is null)
             {
                 throw new ArgumentNullException("No Active user");
@@ -57,7 +57,7 @@ namespace startup_trial.Services.RestaurantService
         public async Task<RestaurantProfile> GetProfile(string email)
         {
             var currentUser = await _userManager.FindByNameAsync(email);
-
+            //var checkUser = await _userManager.Users.OfType<Restaurant>().ToListAsync();
             if (currentUser == null)
             {
                 throw new InvalidOperationException("No user");
@@ -91,9 +91,10 @@ namespace startup_trial.Services.RestaurantService
             {
                 throw new Exception("User with email not found, rather create an account");
             }
-            
+
             var generateToken = GenerateToken(checkUser);
             return generateToken;
+
         }
 
         public async Task RegisterRestaurant(RegisterRestaurantDto model)

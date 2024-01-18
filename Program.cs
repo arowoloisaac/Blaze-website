@@ -20,6 +20,8 @@ using startup_trial.Services.RestaurantService;
 using System.Security.Claims;
 using System.Text;
 using startup_trial.Services.RestaurantDish;
+using startup_trial.Services.DriverService;
+using startup_trial.Services.DeliveryService;
 
 namespace startup_trial
 {
@@ -46,6 +48,9 @@ namespace startup_trial
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<IRestaurantService, RestaurantService>();
             builder.Services.AddScoped<IRestaurantDish, RestaurantDish>();
+            builder.Services.AddScoped<IUserRestaurantDish, RestaurantDish>();
+            builder.Services.AddScoped<IDriverService, DriverService>();    
+            builder.Services.AddScoped<IDeliveryService, DeliveryService>();
 
             //add automapper
             builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
@@ -114,6 +119,7 @@ namespace startup_trial
             builder.Services.AddSwaggerGen(option =>
             {
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+                option.EnableAnnotations();
                 option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,

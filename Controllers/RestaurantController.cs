@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using startup_trial.Dtos.RestaurantDto;
 using startup_trial.Services.RestaurantService;
@@ -57,6 +58,7 @@ namespace startup_trial.Controllers
         }
 
         [HttpGet("profile")]
+        [Authorize]
         public async Task<IActionResult> GetRestaurant()
         {
             var userClaim = User.Claims.FirstOrDefault( x => x.Type == ClaimTypes.Email);
@@ -66,6 +68,7 @@ namespace startup_trial.Controllers
         }
 
         [HttpPut("profile")]
+        [Authorize]
         public async Task<IActionResult> EditProfile(EditRestaurantProfile model)
         {
             var emailClaim = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);

@@ -126,6 +126,21 @@ namespace startup_trial.Services.DishService
             return newRating;
         }
 
+        //to map the rating average for the dishes using automapper. reference https://docs.automapper.org/en/stable/Custom-value-resolvers.html
+        public class AverageRatingResolver : IValueResolver<Dish, GetDishDto, double>
+        {
+            public double Resolve(Dish source, GetDishDto destination, double destMember, ResolutionContext context)
+            {
+                if (source.RatingList == null || source.RatingList.Count == 0)
+                {
+                    return 0; // or any default value you want to use
+                }
+
+                double average = source.RatingList.Select(r => r.Value).Average();
+                return average;
+            }
+        }
+
     }
 }
 
