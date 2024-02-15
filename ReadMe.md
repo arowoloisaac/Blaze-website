@@ -1,5 +1,5 @@
 Delivery Service Application
-Welcome to our Delivery Service Application repository! This project is designed to provide a seamless experience for users to register, authenticate, browse dishes by category, and place orders. The application is built using .NET Framework and Docker, with the primary programming language being C#.
+ This project is designed to provide a seamless experience for users to register, authenticate, browse dishes by category, and place orders. The application is built using .NET Framework and Docker, with the primary programming language being C#.
 
 Features
 User Registration and Authentication:
